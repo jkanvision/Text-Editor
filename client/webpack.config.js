@@ -19,12 +19,22 @@ module.exports = () => {
     },
     // Add and configure workbox plugins for a service worker and manifest file.
     plugins: [
+      new HtmlWebpackPlugin({
+        template: './index.html',
+        title: "Text Editor"
+      }),
+
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js',
+      }),
+
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
-        name: 'Contact Cards',
-        short_name: 'Contact',
-        description: 'Never forget your contacts!',
+        name: "Text Editor",
+        short_name: "Editor",
+        description: "Edit while you're offline",
         background_color: '#225ca3',
         theme_color: '#225ca3',
         start_url: './',
